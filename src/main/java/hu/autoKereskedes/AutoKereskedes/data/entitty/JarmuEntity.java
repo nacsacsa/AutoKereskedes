@@ -13,26 +13,26 @@ public class JarmuEntity {
     private Long id;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "felhasznalo_id", referencedColumnName = "id")
-    private FelhasznaloEntity felhasznalo_id;
+    private FelhasznaloEntity felhasznalo;
     @Column(name = "marka")
     private String marka;
     @Column(name = "tipus")
     private String tipus;
     @Column(name = "ar")
     private Long ar;
-    @Column(name = "ev_jarat")
-    private String evJarat;
+    @Column(name = "ev")
+    private Long ev;
 
     public JarmuEntity() {
     }
 
-    public JarmuEntity(Long id, FelhasznaloEntity felhasznalo_id, String marka, String tipus, Long ar, String evJarat) {
+    public JarmuEntity(Long id, FelhasznaloEntity felhasznalo, String marka, String tipus, Long ar, Long ev) {
         this.id = id;
-        this.felhasznalo_id = felhasznalo_id;
+        this.felhasznalo = felhasznalo;
         this.marka = marka;
         this.tipus = tipus;
         this.ar = ar;
-        this.evJarat = evJarat;
+        this.ev = ev;
     }
 
     public Long getId() {
@@ -43,12 +43,12 @@ public class JarmuEntity {
         this.id = id;
     }
 
-    public FelhasznaloEntity getFelhasznalo_id() {
-        return felhasznalo_id;
+    public FelhasznaloEntity getFelhasznalo() {
+        return felhasznalo;
     }
 
-    public void setFelhasznalo_id(FelhasznaloEntity felhasznalo_id) {
-        this.felhasznalo_id = felhasznalo_id;
+    public void setFelhasznalo(FelhasznaloEntity felhasznalo) {
+        this.felhasznalo = felhasznalo;
     }
 
     public String getMarka() {
@@ -75,12 +75,12 @@ public class JarmuEntity {
         this.ar = ar;
     }
 
-    public String getEv_jarat() {
-        return evJarat;
+    public Long getEv() {
+        return ev;
     }
 
-    public void setEv_jarat(String ev_jarat) {
-        this.evJarat = ev_jarat;
+    public void setEv(Long ev) {
+        this.ev = ev;
     }
 
     @Override
@@ -88,11 +88,11 @@ public class JarmuEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         JarmuEntity that = (JarmuEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(felhasznalo_id, that.felhasznalo_id) && Objects.equals(marka, that.marka) && Objects.equals(tipus, that.tipus) && Objects.equals(ar, that.ar) && Objects.equals(evJarat, that.evJarat);
+        return Objects.equals(id, that.id) && Objects.equals(felhasznalo, that.felhasznalo) && Objects.equals(marka, that.marka) && Objects.equals(tipus, that.tipus) && Objects.equals(ar, that.ar) && Objects.equals(ev, that.ev);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, felhasznalo_id, marka, tipus, ar, evJarat);
+        return Objects.hash(id, felhasznalo, marka, tipus, ar, ev);
     }
 }
