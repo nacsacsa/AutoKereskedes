@@ -2,7 +2,6 @@ package hu.autoKereskedes.AutoKereskedes.service.dto;
 
 import hu.autoKereskedes.AutoKereskedes.data.entitty.JarmuEntity;
 import hu.autoKereskedes.AutoKereskedes.data.entitty.RendelesEntity;
-import jakarta.persistence.*;
 
 import java.util.Objects;
 import java.util.Set;

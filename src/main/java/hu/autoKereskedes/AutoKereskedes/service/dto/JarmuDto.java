@@ -1,7 +1,5 @@
 package hu.autoKereskedes.AutoKereskedes.service.dto;
 
-import hu.autoKereskedes.AutoKereskedes.data.entitty.FelhasznaloEntity;
-import jakarta.persistence.*;
 
 import java.util.Objects;
 

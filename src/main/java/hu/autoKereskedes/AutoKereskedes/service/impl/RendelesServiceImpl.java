@@ -1,10 +1,12 @@
 package hu.autoKereskedes.AutoKereskedes.service.impl;
 
+import hu.autoKereskedes.AutoKereskedes.data.entitty.FelhasznaloEntity;
 import hu.autoKereskedes.AutoKereskedes.data.entitty.JarmuEntity;
 import hu.autoKereskedes.AutoKereskedes.data.entitty.RendelesEntity;
 import hu.autoKereskedes.AutoKereskedes.data.repository.JarmuRepository;
 import hu.autoKereskedes.AutoKereskedes.data.repository.RendelesRepository;
 import hu.autoKereskedes.AutoKereskedes.service.RendelesService;
+import hu.autoKereskedes.AutoKereskedes.service.dto.FelhasznaloDto;
 import hu.autoKereskedes.AutoKereskedes.service.dto.JarmuDto;
 import hu.autoKereskedes.AutoKereskedes.service.dto.RendelesDto;
 import org.modelmapper.ModelMapper;
@@ -27,8 +29,10 @@ public class RendelesServiceImpl implements RendelesService {
     ModelMapper mapper;
 
     @Override
-    public RendelesDto save(RendelesDto rendelesDto) {
+    public RendelesDto save(RendelesDto rendelesDto, FelhasznaloDto felhasznaloDto) {
         RendelesEntity entity = mapper.map(rendelesDto, RendelesEntity.class);
+        FelhasznaloEntity felhasznaloEntity = mapper.map(felhasznaloDto, FelhasznaloEntity.class);
+        entity.setFelhasznalo(felhasznaloEntity);
         entity = rendelesRepository.save(entity);
         return mapper.map(entity, RendelesDto.class);
     }

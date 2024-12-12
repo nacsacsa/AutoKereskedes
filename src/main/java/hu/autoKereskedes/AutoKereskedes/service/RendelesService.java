@@ -1,12 +1,13 @@
 package hu.autoKereskedes.AutoKereskedes.service;
 
+import hu.autoKereskedes.AutoKereskedes.service.dto.FelhasznaloDto;
 import hu.autoKereskedes.AutoKereskedes.service.dto.JarmuDto;
 import hu.autoKereskedes.AutoKereskedes.service.dto.RendelesDto;
 
 import java.util.List;
 
 public interface RendelesService {
-    RendelesDto save(RendelesDto rendelesDto);
+    RendelesDto save(RendelesDto rendelesDto, FelhasznaloDto felhasznaloDto);
     void delete(Long id);
     RendelesDto getRendelesById(Long id);
     List<RendelesDto> getAllRendeles();
