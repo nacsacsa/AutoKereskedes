@@ -14,5 +14,4 @@ public interface JarmuRepository extends JpaRepository<JarmuEntity, Long> {
     List<JarmuEntity> findAllByArBetween(Long kezdoAr, Long vegAr);
     List<JarmuEntity> findAllByEv(Long ev);
     List<JarmuEntity> findAllByEvBetween(Long kezdoEv, Long vegEv);
-    List<JarmuEntity> findAllById(Long id);
 }

@@ -14,5 +14,5 @@ public interface JarmuService {
     List<JarmuDto> findAllByArBetween(long start, long end);
     List<JarmuDto> findAllByEv(long ev);
     List<JarmuDto> findAllByEvBetween(long start, long end);
-    List<JarmuDto> findAllByAny(String marka, String tipus, Long ar, Long ev);
+    List<JarmuDto> findAllByAny(String marka, String tipus, Long kezdo_ar, Long veg_ar, Long kezdo_ev, Long veg_ev);
 }

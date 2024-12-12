@@ -52,7 +52,40 @@ public class RendelesServiceImpl implements RendelesService {
 
     @Override
     public List<JarmuDto> getAllJarmuByRendelesId(Long id) {
-        List<JarmuEntity> list = jarmuRepository.findAllById(id);
-        return mapper.map(list, new TypeToken<List<JarmuDto>>(){}.getType());
+        RendelesEntity entity = rendelesRepository.findById(id).orElse(null);
+        if (entity != null) {
+            List<JarmuEntity> list = entity.getJarmuvek();
+            return mapper.map(list, new TypeToken<List<JarmuDto>>(){}.getType());
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteJarmuFromRendeles(Long rendelesId, Long jarmuId) {
+        RendelesEntity rendeles = rendelesRepository.findById(rendelesId)
+                .orElseThrow(() -> new RuntimeException("Rendelés nem található"));
+
+        JarmuEntity jarmu = jarmuRepository.findById(jarmuId)
+                .orElseThrow(() -> new RuntimeException("Jármű nem található"));
+        if (rendeles.getJarmuvek().contains(jarmu)) {
+            rendeles.getJarmuvek().remove(jarmu);
+            rendelesRepository.save(rendeles);
+        } else {
+            throw new RuntimeException("A jármű nem tartozik ehhez a rendeléshez.");
+        }
+    }
+
+    @Override
+    public RendelesDto saveJarmuToRendeles(Long rendelesId, Long jarmuId) {
+        RendelesEntity rendeles = rendelesRepository.findById(rendelesId)
+                .orElseThrow(() -> new RuntimeException("Rendelés nem található"));
+        JarmuEntity jarmu = jarmuRepository.findById(jarmuId)
+                .orElseThrow(() -> new RuntimeException("Jármű nem található"));
+        if (rendeles.getJarmuvek().contains(jarmu)) {
+            throw new RuntimeException("A jármű már hozzá van adva ehhez a rendeléshez.");
+        }
+        rendeles.getJarmuvek().add(jarmu);
+        rendeles = rendelesRepository.save(rendeles);
+        return mapper.map(rendeles, RendelesDto.class);
     }
 }

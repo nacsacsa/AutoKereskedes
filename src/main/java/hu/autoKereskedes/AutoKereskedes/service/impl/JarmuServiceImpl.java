@@ -75,13 +75,15 @@ public class JarmuServiceImpl implements JarmuService {
     }
 
     @Override
-    public List<JarmuDto> findAllByAny(String marka, String tipus, Long ar, Long ev) {
+    public List<JarmuDto> findAllByAny(String marka, String tipus, Long kezdo_ar, Long veg_ar, Long kezdo_ev, Long veg_ev) {
         List<JarmuEntity> jarmuk = repo.findAll();
         jarmuk = jarmuk.stream()
                 .filter(x -> marka == null || x.getMarka().equals(marka))
                 .filter(x -> tipus == null || x.getTipus().equals(tipus))
-                .filter(x -> ar == null || x.getAr().equals(ar))
-                .filter(x -> ev == null || x.getEv().equals(ev))
+                .filter(x -> kezdo_ar == null || x.getAr() >= kezdo_ar)
+                .filter(x -> veg_ar == null || x.getAr() <= veg_ar)
+                .filter(x -> kezdo_ev == null || x.getEv() >= kezdo_ev)
+                .filter(x -> veg_ev == null || x.getEv() <= veg_ev)
                 .toList();
 
         return mapper.map(jarmuk, new TypeToken<List<JarmuDto>>(){}.getType());

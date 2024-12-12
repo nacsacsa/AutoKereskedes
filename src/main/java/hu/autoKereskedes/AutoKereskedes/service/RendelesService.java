@@ -11,4 +11,6 @@ public interface RendelesService {
     RendelesDto getRendelesById(Long id);
     List<RendelesDto> getAllRendeles();
     List<JarmuDto> getAllJarmuByRendelesId(Long id);
+    void deleteJarmuFromRendeles(Long rendelesId, Long jarmuId);
+    RendelesDto saveJarmuToRendeles(Long rendelesId, Long jarmuId);
 }
