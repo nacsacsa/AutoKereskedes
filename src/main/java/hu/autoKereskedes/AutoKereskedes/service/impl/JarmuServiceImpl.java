@@ -1,8 +1,10 @@
 package hu.autoKereskedes.AutoKereskedes.service.impl;
 
+import hu.autoKereskedes.AutoKereskedes.data.entitty.FelhasznaloEntity;
 import hu.autoKereskedes.AutoKereskedes.data.entitty.JarmuEntity;
 import hu.autoKereskedes.AutoKereskedes.data.repository.JarmuRepository;
 import hu.autoKereskedes.AutoKereskedes.service.JarmuService;
+import hu.autoKereskedes.AutoKereskedes.service.dto.FelhasznaloDto;
 import hu.autoKereskedes.AutoKereskedes.service.dto.JarmuDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -21,10 +23,12 @@ public class JarmuServiceImpl implements JarmuService {
     ModelMapper mapper;
 
     @Override
-    public JarmuDto save(JarmuDto jarmuDto) {
-        JarmuEntity entity = mapper.map(jarmuDto, JarmuEntity.class);
-        entity = repo.save(entity);
-        return mapper.map(entity, JarmuDto.class);
+    public JarmuDto save(JarmuDto jarmuDto, FelhasznaloDto felhasznalo) {
+        JarmuEntity jarmu = mapper.map(jarmuDto, JarmuEntity.class);
+        FelhasznaloEntity felhasz = mapper.map(felhasznalo, FelhasznaloEntity.class);
+        jarmu.setFelhasznalo(felhasz);
+        jarmu = repo.save(jarmu);
+        return mapper.map(jarmu, JarmuDto.class);
     }
 
     @Override

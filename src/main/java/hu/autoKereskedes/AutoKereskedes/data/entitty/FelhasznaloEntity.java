@@ -1,13 +1,15 @@
 package hu.autoKereskedes.AutoKereskedes.data.entitty;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "felhasznalo")
-public class FelhasznaloEntity {
+public class FelhasznaloEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +25,9 @@ public class FelhasznaloEntity {
     private Set<JarmuEntity> jarmu;
     @OneToOne(mappedBy = "felhasznalo")
     private RendelesEntity rendeles;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private Set<JogosultsagEntity> jogosultsagok;
 
     public FelhasznaloEntity() {
     }
@@ -82,6 +87,33 @@ public class FelhasznaloEntity {
 
     public void setRendeles(RendelesEntity rendeles) {
         this.rendeles = rendeles;
+    }
+
+    public Set<JogosultsagEntity> getJogosultsagok() {
+        return jogosultsagok;
+    }
+
+    public void setJogosultsagok(Set<JogosultsagEntity> jogosultsagok) {
+        this.jogosultsagok = jogosultsagok;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for(JogosultsagEntity j : jogosultsagok){
+            authorities.add(new SimpleGrantedAuthority(j.getNev()));
+        }
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return jelszo;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
     }
 
     @Override

@@ -1,11 +1,13 @@
 package hu.autoKereskedes.AutoKereskedes.service;
 
+import hu.autoKereskedes.AutoKereskedes.data.entitty.FelhasznaloEntity;
+import hu.autoKereskedes.AutoKereskedes.service.dto.FelhasznaloDto;
 import hu.autoKereskedes.AutoKereskedes.service.dto.JarmuDto;
 
 import java.util.List;
 
 public interface JarmuService {
-    JarmuDto save(JarmuDto termekDto);
+    JarmuDto save(JarmuDto termekDto, FelhasznaloDto felhasznalo);
     void delete(Long id);
     JarmuDto findById(Long id);
     List<JarmuDto> findAll();
