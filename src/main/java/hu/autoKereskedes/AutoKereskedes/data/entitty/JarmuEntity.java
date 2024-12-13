@@ -11,7 +11,7 @@ public class JarmuEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "felhasznalo_id", referencedColumnName = "id")
     private FelhasznaloEntity felhasznalo;
     @Column(name = "marka")
