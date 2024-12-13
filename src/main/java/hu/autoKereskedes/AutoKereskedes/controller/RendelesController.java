@@ -67,12 +67,12 @@ public class RendelesController {
     }
 
     @DeleteMapping("/rendeles/jarmu/delete")
-    public void deleteJarmuToRendeles(@RequestBody Long rendelesId, @RequestBody Long jarmuId){
+    public void deleteJarmuToRendeles(@RequestParam Long rendelesId, @RequestParam Long jarmuId){
         service.deleteJarmuFromRendeles(rendelesId, jarmuId);
     }
 
-    @PostMapping("/rendeles/jarmu/save")
-    public RendelesDto saveJarmuToRendeles(@RequestBody Long rendelesId, @RequestBody Long jarmuId){
+    @PutMapping("/rendeles/jarmu/save")
+    public RendelesDto saveJarmuToRendeles(@RequestParam Long rendelesId, @RequestParam Long jarmuId){
         return service.saveJarmuToRendeles(rendelesId, jarmuId);
     }
 }

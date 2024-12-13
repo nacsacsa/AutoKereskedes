@@ -1,6 +1,5 @@
 package hu.autoKereskedes.AutoKereskedes.controller;
 
-import hu.autoKereskedes.AutoKereskedes.data.entitty.FelhasznaloEntity;
 import hu.autoKereskedes.AutoKereskedes.service.FelhasznaloService;
 import hu.autoKereskedes.AutoKereskedes.service.JarmuService;
 import hu.autoKereskedes.AutoKereskedes.service.dto.FelhasznaloDto;
@@ -77,12 +76,12 @@ public class JarmuController {
     }
 
     @GetMapping("/jarmu/evkozott")
-    public List<JarmuDto> findByEvBetween(@RequestBody Long kezdo_ev, @RequestBody Long veg_ev){
+    public List<JarmuDto> findByEvBetween(@RequestParam Long kezdo_ev, @RequestParam Long veg_ev){
         return jarmuService.findAllByEvBetween(kezdo_ev, veg_ev);
     }
 
     @GetMapping("/jarmu/arkozott")
-    public List<JarmuDto> findByArBetween(@RequestBody Long kezdo_ar, @RequestBody Long veg_ar){
+    public List<JarmuDto> findByArBetween(@RequestParam Long kezdo_ar, @RequestParam Long veg_ar){
         return jarmuService.findAllByArBetween(kezdo_ar, veg_ar);
     }
 

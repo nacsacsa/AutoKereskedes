@@ -3,6 +3,7 @@ package hu.autoKereskedes.AutoKereskedes.service.impl;
 import hu.autoKereskedes.AutoKereskedes.data.entitty.FelhasznaloEntity;
 import hu.autoKereskedes.AutoKereskedes.data.entitty.JarmuEntity;
 import hu.autoKereskedes.AutoKereskedes.data.entitty.RendelesEntity;
+import hu.autoKereskedes.AutoKereskedes.data.repository.FelhasznaloRepository;
 import hu.autoKereskedes.AutoKereskedes.data.repository.JarmuRepository;
 import hu.autoKereskedes.AutoKereskedes.data.repository.RendelesRepository;
 import hu.autoKereskedes.AutoKereskedes.service.RendelesService;
@@ -23,6 +24,9 @@ public class RendelesServiceImpl implements RendelesService {
     RendelesRepository rendelesRepository;
 
     @Autowired
+    FelhasznaloRepository felhasznaloRepository;
+
+    @Autowired
     JarmuRepository jarmuRepository;
 
     @Autowired
@@ -31,8 +35,8 @@ public class RendelesServiceImpl implements RendelesService {
     @Override
     public RendelesDto save(RendelesDto rendelesDto, FelhasznaloDto felhasznaloDto) {
         RendelesEntity entity = mapper.map(rendelesDto, RendelesEntity.class);
-        FelhasznaloEntity felhasznaloEntity = mapper.map(felhasznaloDto, FelhasznaloEntity.class);
-        entity.setFelhasznalo(felhasznaloEntity);
+        FelhasznaloEntity felhasz = felhasznaloRepository.findByEmail(felhasznaloDto.getEmail());
+        entity.setFelhasznalo(felhasz);
         entity = rendelesRepository.save(entity);
         return mapper.map(entity, RendelesDto.class);
     }
