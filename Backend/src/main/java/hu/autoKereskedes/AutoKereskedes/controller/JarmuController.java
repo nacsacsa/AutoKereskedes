@@ -91,7 +91,7 @@ public class JarmuController {
         return jarmuService.findAllByArBetween(kezdo_ar, veg_ar);
     }
 
-    @GetMapping("/jarmu/filter")
+    @PostMapping("/jarmu/filter")
     public List<JarmuDto> findFiltered(@RequestBody(required = false) String marka,
                                         @RequestBody(required = false) String tipus,
                                         @RequestBody(required = false) Long kezdo_ar,

@@ -21,7 +21,7 @@ public class FelhasznaloEntity implements UserDetails {
     @Column(name = "jelszo")
     private String jelszo;
 
-    @OneToMany(mappedBy = "felhasznalo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "felhasznalo", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<JarmuEntity> jarmu = new HashSet<>();
     @OneToOne(mappedBy = "felhasznalo")
     private RendelesEntity rendeles;

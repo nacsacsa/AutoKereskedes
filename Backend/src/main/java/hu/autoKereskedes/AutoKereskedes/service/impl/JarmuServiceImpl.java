@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -37,7 +38,9 @@ public class JarmuServiceImpl implements JarmuService {
 
     @Override
     public void delete(Long id) {
-        jarmuRepository.deleteById(id);
+        JarmuEntity jarmu = jarmuRepository.getReferenceById(id);
+        jarmu.setFelhasznalo(null);
+        jarmuRepository.deleteById(jarmu.getId());
     }
 
     @Override

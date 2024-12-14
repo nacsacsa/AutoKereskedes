@@ -1,15 +1,31 @@
-<div class="jarmu-container">
-  <mat-card *ngFor="let jarmu of jarmuvek" class="jarmu-card">
+<div class="layout-container">
+  <!-- Felső sáv -->
+  <div class="top-bar">
+    <button mat-raised-button color="primary">Létrehozás</button>
+    <button mat-raised-button color="accent">Felhasználók</button>
+    <button mat-raised-button color="warn">Rendelések</button>
+  </div>
 
-    <img mat-card-image ngSrc="assets/jarmu.png" alt="Jármű kép" height="288" width="576">
-    <mat-card-header>
-      <mat-card-title>{{ jarmu.marka }}  {{ jarmu.tipus }} {{ jarmu.ev }}</mat-card-title>
-      <mat-card-subtitle>{{ jarmu.ar | currency }}</mat-card-subtitle>
-    </mat-card-header>
+  <div class="main-container">
+    <!-- Bal oldali sáv -->
+    <div class="side-bar">
+      <h3>Szűrők</h3>
+    </div>
 
-    <mat-card-actions>
-      <button mat-button class="blue-button">Vásárlás</button>
-      <button mat-button class="blue-button">Módosítás</button>
-    </mat-card-actions>
-  </mat-card>
+    <!-- Jármű kártyák -->
+    <div class="jarmu-container">
+      <mat-card *ngFor="let jarmu of jarmuvek" class="jarmu-card">
+        <img mat-card-image ngSrc="https://www.shutterstock.com/image-vector/car-silhouette-modern-260nw-292381178.jpg" alt="Jármű kép" height="288" width="576">
+        <mat-card-header>
+          <mat-card-title>{{ jarmu.marka }} {{ jarmu.tipus }} {{ jarmu.ev }}</mat-card-title>
+          <mat-card-subtitle>{{ jarmu.ar | currency }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button class="blue-button">Vásárlás</button>
+          <button mat-button class="blue-button">Módosítás</button>
+          <button mat-button class="red-button" (click)="deleteJarmu(jarmu.id)">Törlés</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </div>
