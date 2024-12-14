@@ -1,7 +1,7 @@
 <div class="layout-container">
   <!-- Felső sáv -->
   <div class="top-bar">
-    <button mat-raised-button color="primary">Létrehozás</button>
+    <button mat-raised-button color="primary" (click)="isEditing = true">Létrehozás</button>
     <button mat-raised-button color="accent">Felhasználók</button>
     <button mat-raised-button color="warn">Rendelések</button>
   </div>
@@ -27,5 +27,30 @@
         </mat-card-actions>
       </mat-card>
     </div>
+
+    <mat-dialog-actions *ngIf="isEditing">
+      <mat-form-field>
+        <mat-label>Márka</mat-label>
+        <input matInput [(ngModel)]="newJarmu.marka">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Típus</mat-label>
+        <input matInput [(ngModel)]="newJarmu.tipus">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Év</mat-label>
+        <input matInput [(ngModel)]="newJarmu.ev" type="number">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Ár</mat-label>
+        <input matInput [(ngModel)]="newJarmu.ar" type="number">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="isEditing = false; addJarmu(newJarmu.marka, newJarmu.tipus, newJarmu.ev, newJarmu.ar)">Létrehozás</button>
+      <button mat-raised-button color="warn" (click)="isEditing = false">Mégsem</button>
+    </mat-dialog-actions>
   </div>
 </div>

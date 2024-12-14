@@ -1,0 +1,54 @@
+/* Kártya alapformázás */
+.login-card {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center; /* A kártyán belüli összes elem középre igazítása */
+}
+
+/* Cím formázása */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Form és input mezők formázása */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Térköz a mezők között */
+}
+
+.form-field {
+  width: 100%;
+}
+
+/* Gomb formázása */
+.submit-button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Regisztrációs link */
+.registration-link {
+  margin-top: 20px;
+}
+
+.registration-link p {
+  font-size: 14px;
+  color: #555;
+}
+
+.register-link {
+  color: #3f51b5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}

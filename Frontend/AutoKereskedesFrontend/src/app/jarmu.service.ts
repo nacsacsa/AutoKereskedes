@@ -38,8 +38,7 @@ export class JarmuService {
     return this.http.delete(`${this.baseUrl}/delete/jarmu?id=${id}`, {headers: this.getHeaders()});
   }
 
-
-  /*login(email: string, jelszo: string): Observable<any>{
-    return this.http.post(this.authUrl, {email, jelszo}, {responseType:'text'})
-  }*/
+  saveJarmu(marka: string, tipus: string, ar: number, ev: number): Observable<any>{
+    return this.http.post(`${this.baseUrl}/save/jarmu`, {marka, tipus, ar, ev}, {headers: this.getHeaders()});
+  }
 }

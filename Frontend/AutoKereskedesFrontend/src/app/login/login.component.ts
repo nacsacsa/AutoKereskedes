@@ -6,11 +6,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   imports: [FormsModule,
     MatCardModule,
+    RouterModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule],

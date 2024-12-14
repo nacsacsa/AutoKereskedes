@@ -1,0 +1,25 @@
+<mat-card class="login-card">
+  <h2 class="title">Regisztráció</h2>
+  <form (ngSubmit)="onRegister()" class="login-form">
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Nev</mat-label>
+      <input matInput [(ngModel)]="nev" name="nev" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="email" name="email" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Jelszó</mat-label>
+      <input matInput type="password" [(ngModel)]="jelszo" name="jelszo" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="submit-button">
+      Regisztráció
+    </button>
+  </form>
+</mat-card>
+

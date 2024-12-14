@@ -13,6 +13,7 @@ import {MatSlider} from '@angular/material/slider';
 import {MatOption, MatSelect} from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
+import {MatDialogActions} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-jarmu',
@@ -25,7 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     CommonModule,
     MatCardModule,
-    FormsModule, CurrencyPipe, NgOptimizedImage],
+    FormsModule, CurrencyPipe, NgOptimizedImage, MatDialogActions],
   templateUrl: './jarmu.component.html',
   styleUrl: './jarmu.component.css',
   standalone: true
@@ -62,4 +63,14 @@ export class JarmuComponent implements OnInit{
         error: (err) => console.error('Hiba a törlés során:', err),
       });
     }
+
+  addJarmu(marka: string, tipus: string, ev: number, ar: number) {
+    this.jarmuService.saveJarmu(marka, tipus, ev, ar).subscribe({
+      next: () => {
+        console.log(`Jármű hozzáadva`);
+        this.loadJarmu();
+      },
+      error: (err) => console.error('Hiba a létrehozás közben:', err),
+    });
+  }
 }
