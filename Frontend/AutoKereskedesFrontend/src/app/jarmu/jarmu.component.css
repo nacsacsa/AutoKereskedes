@@ -1,0 +1,54 @@
+/* Jarmu.component.css */
+
+.jarmu-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.jarmu-card {
+  background-color: #f9f9f9; /* Világos háttérszín */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.mat-card-header {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.mat-card-content {
+  padding: 20px;
+  color: #333;
+}
+
+.mat-card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.mat-card-subtitle {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.mat-card-actions {
+  padding: 10px;
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.blue-button {
+  background-color: #007bff;
+  color: white;
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.jarmu-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}

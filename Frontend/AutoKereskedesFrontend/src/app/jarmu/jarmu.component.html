@@ -1,0 +1,15 @@
+<div class="jarmu-container">
+  <mat-card *ngFor="let jarmu of jarmuvek" class="jarmu-card">
+
+    <img mat-card-image ngSrc="assets/jarmu.png" alt="Jármű kép" height="288" width="576">
+    <mat-card-header>
+      <mat-card-title>{{ jarmu.marka }}  {{ jarmu.tipus }} {{ jarmu.ev }}</mat-card-title>
+      <mat-card-subtitle>{{ jarmu.ar | currency }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-actions>
+      <button mat-button class="blue-button">Vásárlás</button>
+      <button mat-button class="blue-button">Módosítás</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

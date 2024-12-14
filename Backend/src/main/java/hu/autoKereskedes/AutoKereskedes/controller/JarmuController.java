@@ -5,6 +5,7 @@ import hu.autoKereskedes.AutoKereskedes.service.JarmuService;
 import hu.autoKereskedes.AutoKereskedes.service.dto.FelhasznaloDto;
 import hu.autoKereskedes.AutoKereskedes.service.dto.JarmuDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 
@@ -19,6 +20,11 @@ public class JarmuController {
 
     @Autowired
     FelhasznaloService felhasznaloService;
+
+    @RequestMapping(value = "/**", method = RequestMethod.OPTIONS)
+    public ResponseEntity<Void> handleOptions(){
+        return ResponseEntity.ok().build();
+    }
 
     @PostMapping("/save/jarmu")
     public JarmuDto saveJarmu(@RequestBody JarmuDto jarmu, Authentication authentication) {
