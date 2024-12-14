@@ -1,2 +1,2 @@
 # AutoKereskedes
- Backend az autó kereskedés projekthez
+Autókereskedés webaplikáció
