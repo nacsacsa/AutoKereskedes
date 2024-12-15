@@ -14,6 +14,7 @@ import {MatOption, MatSelect} from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDialogActions} from '@angular/material/dialog';
+import {RendelesService} from '../rendeles.service';
 
 @Component({
   selector: 'app-jarmu',
@@ -43,7 +44,7 @@ export class JarmuComponent implements OnInit{
     isCreating = false;
     isEditing = false;
 
-    constructor(private jarmuService: JarmuService) {
+    constructor(private jarmuService: JarmuService, private rendelesService: RendelesService) {
     }
 
 
@@ -113,6 +114,16 @@ export class JarmuComponent implements OnInit{
       data => {
       this.jarmuvek = data;
       this.dataSource.data = data;
+    });
+  }
+
+  saveJarmuToRendeles(id: number)
+  {
+    this.rendelesService.updateRendeles(id).subscribe({
+      next: () => {
+        console.log(`Rendeléshez a jármű hozzáadva`);
+      },
+      error: (err) => console.error('Hiba a rendeléshez mentés közben:', err),
     });
   }
 }
