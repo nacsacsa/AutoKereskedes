@@ -1,7 +1,7 @@
 <div class="layout-container">
   <!-- Felső sáv -->
   <div class="top-bar">
-    <button mat-raised-button color="primary" (click)="isEditing = true">Létrehozás</button>
+    <button mat-raised-button color="primary" (click)="isCreating = true">Létrehozás</button>
     <button mat-raised-button color="accent">Felhasználók</button>
     <button mat-raised-button color="warn">Rendelések</button>
   </div>
@@ -22,11 +22,36 @@
         </mat-card-header>
         <mat-card-actions>
           <button mat-button class="blue-button">Vásárlás</button>
-          <button mat-button class="blue-button">Módosítás</button>
+          <button mat-button class="blue-button" (click)="isEditing = true; newJarmuSzerkesztes(jarmu.id, jarmu.marka, jarmu.tipus, jarmu.ar, jarmu.ev)">Módosítás</button>
           <button mat-button class="red-button" (click)="deleteJarmu(jarmu.id)">Törlés</button>
         </mat-card-actions>
       </mat-card>
     </div>
+
+    <mat-dialog-actions *ngIf="isCreating">
+      <mat-form-field>
+        <mat-label>Márka</mat-label>
+        <input matInput [(ngModel)]="newJarmu.marka">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Típus</mat-label>
+        <input matInput [(ngModel)]="newJarmu.tipus">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Ár</mat-label>
+        <input matInput [(ngModel)]="newJarmu.ar" type="number">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Év</mat-label>
+        <input matInput [(ngModel)]="newJarmu.ev" type="number">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="isCreating = false; addJarmu(newJarmu.marka, newJarmu.tipus, newJarmu.ar, newJarmu.ev)">Létrehozás</button>
+      <button mat-raised-button color="warn" (click)="isCreating = false">Mégsem</button>
+    </mat-dialog-actions>
 
     <mat-dialog-actions *ngIf="isEditing">
       <mat-form-field>
@@ -40,16 +65,16 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Év</mat-label>
-        <input matInput [(ngModel)]="newJarmu.ev" type="number">
-      </mat-form-field>
-
-      <mat-form-field>
         <mat-label>Ár</mat-label>
         <input matInput [(ngModel)]="newJarmu.ar" type="number">
       </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)="isEditing = false; addJarmu(newJarmu.marka, newJarmu.tipus, newJarmu.ev, newJarmu.ar)">Létrehozás</button>
+      <mat-form-field>
+        <mat-label>Év</mat-label>
+        <input matInput [(ngModel)]="newJarmu.ev" type="number">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="isEditing = false; updateJarmu(newJarmu.id,newJarmu.marka, newJarmu.tipus, newJarmu.ar, newJarmu.ev); resetNewJarmu()">Módosítás</button>
       <button mat-raised-button color="warn" (click)="isEditing = false">Mégsem</button>
     </mat-dialog-actions>
   </div>

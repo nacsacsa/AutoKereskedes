@@ -1,22 +1,114 @@
 /* Jarmu.component.css */
 
-.jarmu-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
+/* Általános stílusok */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4; /* Globális háttérszín */
 }
 
+/* Layout konténer */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Felső navigációs sáv */
+.top-bar {
+  display: flex;
+  flex-direction: row; /* Gombok egymás mellett */
+  justify-content: space-around; /* Egyenletes távolság a gombok között */
+  align-items: center;
+  background-color: #4caf50; /* Felső sáv háttérszíne */
+  color: white;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar button {
+  color: white;
+  background-color: #388e3c; /* Gombok színe különbözik a sáv háttérszínétől */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.top-bar button:hover {
+  background-color: #2e7d32; /* Hover effektus */
+}
+
+/* Fő tartalom konténer */
+.main-container {
+  display: flex;
+  flex: 1;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* Bal oldali sáv */
+.side-bar {
+  width: 250px;
+  background-color: #eeeeee;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-right: 1px solid #ddd;
+}
+
+.side-bar button {
+  width: 100%;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.side-bar button:hover {
+  background-color: #303f9f;
+}
+
+/* Jármű kártyák tartó */
+.jarmu-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Rácsos elrendezés */
+  gap: 20px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Egyéni kártyák stílusai */
 .jarmu-card {
-  background-color: #f9f9f9; /* Világos háttérszín */
+  background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.jarmu-card:hover {
+  transform: scale(1.05);
+}
+
+.jarmu-card img {
+  width: 100%;
+  height: auto;
 }
 
 .mat-card-header {
   background-color: #3f51b5;
   color: white;
+  padding: 10px;
+  text-align: center;
 }
 
 .mat-card-content {
@@ -37,15 +129,18 @@
 .mat-card-actions {
   padding: 10px;
   background-color: #f1f1f1;
-  text-align: center;
   display: flex;
   justify-content: space-evenly; /* Képes elrendezni a gombokat */
-  gap: 10px; /* Távolságot ad a gombok között */
+  gap: 10px;
 }
 
 .blue-button {
   background-color: #007bff;
   color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
 }
 
 .blue-button:hover {
@@ -55,74 +150,12 @@
 .red-button {
   background-color: red;
   color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
 }
 
 .red-button:hover {
   background-color: darkred;
-}
-
-.jarmu-card:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
-}
-
-mat-slider {
-  width: 300px;
-}
-
-/* Alap konténer a teljes layouthoz */
-.layout-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-/* Felső navigációs sáv */
-.top-bar {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #3f51b5;
-  color: white;
-  padding: 10px;
-}
-
-.top-bar button {
-  color: white;
-}
-
-/* Fő tartalom konténer */
-.main-container {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-}
-
-/* Bal oldali sáv */
-.side-bar {
-  width: 250px;
-  background-color: #f5f5f5;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  border-right: 1px solid #ddd;
-}
-
-.side-bar button {
-  width: 100%;
-}
-
-/* Jármű konténer */
-.jarmu-container {
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding: 16px;
-  overflow-y: auto;
-}
-
-.jarmu-card {
-  width: 300px;
 }

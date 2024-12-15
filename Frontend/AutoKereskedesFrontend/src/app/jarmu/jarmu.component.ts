@@ -36,7 +36,9 @@ export class JarmuComponent implements OnInit{
     displayedColumns: string[] = ['marka','tipus','ar', 'ev'];
     dataSource = new MatTableDataSource<Jarmu>(this.jarmuvek);
 
-    newJarmu: { marka: string; tipus: string; ar: number, ev: number } = {marka: '', tipus: '', ar: 0, ev: 0};
+    newJarmu: {id: number, marka: string; tipus: string; ar: number, ev: number } = {id: 0, marka: '', tipus: '', ar: 0, ev: 0};
+
+    isCreating = false;
     isEditing = false;
 
     constructor(private jarmuService: JarmuService) {
@@ -46,6 +48,13 @@ export class JarmuComponent implements OnInit{
     ngOnInit(): void {
         this.loadJarmu()
     }
+
+  newJarmuSzerkesztes(id: number, marka: string, tipus: string, ar: number, ev: number) {
+    this.newJarmu = {id, marka, tipus, ev, ar}
+  }
+  resetNewJarmu() {
+    this.newJarmu = {id: 0, marka: '', tipus: '', ar: 0, ev: 0};
+  }
 
   loadJarmu(){
       this.jarmuService.getAllJarmu().subscribe(data => {
@@ -64,8 +73,8 @@ export class JarmuComponent implements OnInit{
       });
     }
 
-  addJarmu(marka: string, tipus: string, ev: number, ar: number) {
-    this.jarmuService.saveJarmu(marka, tipus, ev, ar).subscribe({
+  addJarmu(marka: string, tipus: string, ar: number, ev: number) {
+    this.jarmuService.saveJarmu(marka, tipus, ar, ev).subscribe({
       next: () => {
         console.log(`Jármű hozzáadva`);
         this.loadJarmu();
@@ -73,4 +82,15 @@ export class JarmuComponent implements OnInit{
       error: (err) => console.error('Hiba a létrehozás közben:', err),
     });
   }
+
+    updateJarmu(id: number, marka: string, tipus: string, ar: number, ev: number)
+    {
+      this.jarmuService.updateJarmu(id, marka, tipus, ar, ev).subscribe({
+        next: () => {
+          console.log(`Jármű módosítva`);
+          this.loadJarmu();
+        },
+        error: (err) => console.error('Hiba a módosítás közben:', err),
+      });
+    }
 }
