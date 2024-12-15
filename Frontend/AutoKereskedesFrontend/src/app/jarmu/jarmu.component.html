@@ -10,22 +10,22 @@
     <!-- Bal oldali sáv -->
     <div class="side-bar">
       <h3>Szűrők</h3>
-    </div>
-
-    <!-- Jármű kártyák -->
-    <div class="jarmu-container">
-      <mat-card *ngFor="let jarmu of jarmuvek" class="jarmu-card">
-        <img mat-card-image ngSrc="https://www.shutterstock.com/image-vector/car-silhouette-modern-260nw-292381178.jpg" alt="Jármű kép" height="288" width="576">
-        <mat-card-header>
-          <mat-card-title>{{ jarmu.marka }} {{ jarmu.tipus }} {{ jarmu.ev }}</mat-card-title>
-          <mat-card-subtitle>{{ jarmu.ar | currency }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions>
-          <button mat-button class="blue-button">Vásárlás</button>
-          <button mat-button class="blue-button" (click)="isEditing = true; newJarmuSzerkesztes(jarmu.id, jarmu.marka, jarmu.tipus, jarmu.ar, jarmu.ev)">Módosítás</button>
-          <button mat-button class="red-button" (click)="deleteJarmu(jarmu.id)">Törlés</button>
-        </mat-card-actions>
-      </mat-card>
+      <mat-label>Márka</mat-label>
+      <input matInput [(ngModel)]="jarmuSzuro.marka">
+      <mat-label>Tipus</mat-label>
+      <input matInput [(ngModel)]="jarmuSzuro.tipus">
+      <mat-label>Ár</mat-label>
+      <mat-slider min="0" max="50000" step="1000" showTickMarks discrete>
+        <input value="0" matSliderStartThumb [(ngModel)]="jarmuSzuro.kezdo_ar">
+        <input value="50000" matSliderEndThumb [(ngModel)]="jarmuSzuro.veg_ar">
+      </mat-slider>
+      <mat-label>Év</mat-label>
+      <mat-slider min="1900" max="2024" step="1" showTickMarks discrete>
+        <input value="1900" matSliderStartThumb [(ngModel)]="jarmuSzuro.kezdo_ev">
+        <input value="2024" matSliderEndThumb [(ngModel)]="jarmuSzuro.veg_ev">
+      </mat-slider>
+      <button mat-button class="blue-button" (click)="searchJarmu(jarmuSzuro.marka, jarmuSzuro.tipus, jarmuSzuro.kezdo_ar, jarmuSzuro.veg_ar, jarmuSzuro.kezdo_ev, jarmuSzuro.veg_ev)">Szűrés</button>
+      <button mat-button class="red-button" (click)="loadJarmu()">Szűrő törlése</button>
     </div>
 
     <mat-dialog-actions *ngIf="isCreating">
@@ -77,5 +77,21 @@
       <button mat-raised-button color="primary" (click)="isEditing = false; updateJarmu(newJarmu.id,newJarmu.marka, newJarmu.tipus, newJarmu.ar, newJarmu.ev); resetNewJarmu()">Módosítás</button>
       <button mat-raised-button color="warn" (click)="isEditing = false">Mégsem</button>
     </mat-dialog-actions>
+
+    <!-- Jármű kártyák -->
+    <div class="jarmu-container">
+      <mat-card *ngFor="let jarmu of jarmuvek" class="jarmu-card">
+        <img mat-card-image ngSrc="https://www.shutterstock.com/image-vector/car-silhouette-modern-260nw-292381178.jpg" alt="Jármű kép" height="288" width="576">
+        <mat-card-header>
+          <mat-card-title>{{ jarmu.marka }} {{ jarmu.tipus }} {{ jarmu.ev }}</mat-card-title>
+          <mat-card-subtitle>{{ jarmu.ar | currency }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button class="blue-button">Vásárlás</button>
+          <button mat-button class="blue-button" (click)="isEditing = true; newJarmuSzerkesztes(jarmu.id, jarmu.marka, jarmu.tipus, jarmu.ar, jarmu.ev)">Módosítás</button>
+          <button mat-button class="red-button" (click)="deleteJarmu(jarmu.id)">Törlés</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
 </div>

@@ -26,8 +26,8 @@ export class JarmuService {
     return this.http.get(`${this.baseUrl}/jarmu`, {headers: this.getHeaders()});
   }
 
-  getFilteredJarmu(marka: string, tipus: string, kezdo_ar: number, veg_ar: number, kezdo_ev: number, veg_ev: number): Observable<any>{
-    return this.http.post(`${this.baseUrl}/jarmu/filter`, { marka,tipus, kezdo_ar, veg_ar, kezdo_ev, veg_ev }, {headers: this.getHeaders()});
+  getFilteredJarmu(szuro: any): Observable<any>{
+    return this.http.post(`${this.baseUrl}/jarmu/filter`, szuro, {headers: this.getHeaders()});
   }
 
   updateJarmu(id: number, marka: string, tipus: string, ar: number, ev: number): Observable<any>{

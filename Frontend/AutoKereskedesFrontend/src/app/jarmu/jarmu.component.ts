@@ -38,6 +38,8 @@ export class JarmuComponent implements OnInit{
 
     newJarmu: {id: number, marka: string; tipus: string; ar: number, ev: number } = {id: 0, marka: '', tipus: '', ar: 0, ev: 0};
 
+    jarmuSzuro: {marka: string; tipus: string; kezdo_ar: number, veg_ar: number, kezdo_ev: number, veg_ev: number } = {marka: '', tipus: '', kezdo_ar: 0, veg_ar: 50000, kezdo_ev: 1900, veg_ev : 2024};
+
     isCreating = false;
     isEditing = false;
 
@@ -93,4 +95,24 @@ export class JarmuComponent implements OnInit{
         error: (err) => console.error('Hiba a módosítás közben:', err),
       });
     }
+
+  searchJarmu(marka: string, tipus: string, kezdoAr: number, vegAr: number, kezdoEv: number, vegEv: number)
+  {
+    const szuro: any = {};
+
+    szuro.marka = marka;
+    szuro.tipus = tipus;
+    if (marka == "") szuro.marka = null;
+    if (tipus == "") szuro.tipus = null;
+    szuro.kezdoAr = kezdoAr;
+    szuro.vegAr = vegAr;
+    szuro.kezdoEv = kezdoEv;
+    szuro.vegEv = vegEv
+    console.log('Küldendő szűrő:', szuro);
+    this.jarmuService.getFilteredJarmu(szuro).subscribe(
+      data => {
+      this.jarmuvek = data;
+      this.dataSource.data = data;
+    });
+  }
 }

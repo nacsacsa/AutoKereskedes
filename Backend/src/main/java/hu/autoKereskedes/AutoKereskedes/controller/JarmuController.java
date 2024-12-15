@@ -4,6 +4,7 @@ import hu.autoKereskedes.AutoKereskedes.service.FelhasznaloService;
 import hu.autoKereskedes.AutoKereskedes.service.JarmuService;
 import hu.autoKereskedes.AutoKereskedes.service.dto.FelhasznaloDto;
 import hu.autoKereskedes.AutoKereskedes.service.dto.JarmuDto;
+import hu.autoKereskedes.AutoKereskedes.service.dto.JarmuFilterDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -92,13 +93,14 @@ public class JarmuController {
     }
 
     @PostMapping("/jarmu/filter")
-    public List<JarmuDto> findFiltered(@RequestBody(required = false) String marka,
-                                        @RequestBody(required = false) String tipus,
-                                        @RequestBody(required = false) Long kezdo_ar,
-                                        @RequestBody(required = false) Long veg_ar,
-                                        @RequestBody(required = false) Long kezdo_ev,
-                                       @RequestBody(required = false) Long veg_ev){
-        return jarmuService.findAllByAny(marka,tipus,kezdo_ar,veg_ar,kezdo_ev,veg_ev);
-
+    public List<JarmuDto> findFiltered(@RequestBody JarmuFilterDto filterDto) {
+        return jarmuService.findAllByAny(
+                filterDto.getMarka(),
+                filterDto.getTipus(),
+                filterDto.getKezdoAr(),
+                filterDto.getVegAr(),
+                filterDto.getKezdoEv(),
+                filterDto.getVegEv()
+        );
     }
 }
