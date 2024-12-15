@@ -2,6 +2,14 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
+export interface Rendeles{
+  id: number;
+  felhasznalo: {
+    nev: string;
+    email: string;
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })

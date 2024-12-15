@@ -15,6 +15,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDialogActions} from '@angular/material/dialog';
 import {RendelesService} from '../rendeles.service';
+import {Router} from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-jarmu',
@@ -24,6 +26,7 @@ import {RendelesService} from '../rendeles.service';
     MatButtonModule,
     MatSliderModule,
     MatSelectModule,
+    RouterModule,
     MatIconModule,
     CommonModule,
     MatCardModule,
