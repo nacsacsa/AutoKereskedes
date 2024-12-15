@@ -2,7 +2,7 @@
   <!-- Felső sáv -->
   <div class="top-bar">
     <button mat-raised-button color="primary" (click)="isCreating = true">Létrehozás</button>
-    <button mat-raised-button color="warn" routerLink="/rendeles" >Rendelések</button>
+    <button mat-raised-button color="warn" (click)="isRendelesek ? loadJarmu() : rendelesjarmu(); isRendelesek = !isRendelesek">Rendelések</button>
   </div>
 
   <div class="main-container">

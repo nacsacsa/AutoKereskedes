@@ -62,8 +62,13 @@ public class RendelesController {
     }
 
     @GetMapping("/rendeles/jarmu")
-    public List<JarmuDto> findAllJarmuById(@RequestBody Long id){
-        return service.getAllJarmuByRendelesId(id);
+    public List<JarmuDto> findAllJarmuById(Authentication authentication){
+        String email = authentication.getName();
+        FelhasznaloDto felhasznalo = felhasznaloService.findByEmail(email);
+        if (felhasznalo == null) {
+            throw new RuntimeException("Felhasználó nem található.");
+        }
+        return service.getAllJarmuByRendelesId(felhasznalo.getId());
     }
 
     @DeleteMapping("/rendeles/jarmu/delete")

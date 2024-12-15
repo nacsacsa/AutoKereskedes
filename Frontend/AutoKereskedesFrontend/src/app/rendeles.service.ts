@@ -33,5 +33,8 @@ export class RendelesService {
   updateRendeles(jarmuId: number): Observable<any>{
     return this.http.put(`${this.baseUrl}/rendeles/jarmu/save?jarmuId=${jarmuId}`, {}, {headers: this.getHeaders()});
   }
+  findAllJarmuByRendeles(): Observable<any>{
+    return this.http.get(`${this.baseUrl}/rendeles/jarmu`, {headers: this.getHeaders()});
+  }
 
 }

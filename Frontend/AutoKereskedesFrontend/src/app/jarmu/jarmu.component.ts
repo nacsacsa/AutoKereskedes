@@ -17,6 +17,7 @@ import {MatDialogActions} from '@angular/material/dialog';
 import {RendelesService} from '../rendeles.service';
 import {Router} from '@angular/router';
 import { RouterModule } from '@angular/router';
+import {MatCheckbox} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-jarmu',
@@ -46,6 +47,7 @@ export class JarmuComponent implements OnInit{
 
     isCreating = false;
     isEditing = false;
+    isRendelesek = false;
 
     constructor(private jarmuService: JarmuService, private rendelesService: RendelesService) {
     }
@@ -127,6 +129,14 @@ export class JarmuComponent implements OnInit{
         console.log(`Rendeléshez a jármű hozzáadva`);
       },
       error: (err) => console.error('Hiba a rendeléshez mentés közben:', err),
+    });
+  }
+
+  rendelesjarmu() {
+    this.rendelesService.findAllJarmuByRendeles().subscribe(
+      data => {
+      this.jarmuvek = data;
+      this.dataSource.data = data;
     });
   }
 }
