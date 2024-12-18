@@ -7,6 +7,7 @@ import hu.autoKereskedes.AutoKereskedes.service.dto.JarmuDto;
 import hu.autoKereskedes.AutoKereskedes.service.dto.JarmuFilterDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 
@@ -28,6 +29,7 @@ public class JarmuController {
     }
 
     @PostMapping("/save/jarmu")
+    @PreAuthorize("hasRole('FELHASZNALO')")
     public JarmuDto saveJarmu(@RequestBody JarmuDto jarmu, Authentication authentication) {
         String email = authentication.getName();
         FelhasznaloDto felhasznalo = felhasznaloService.findByEmail(email);
@@ -38,11 +40,13 @@ public class JarmuController {
     }
 
     @DeleteMapping("/delete/jarmu")
+    @PreAuthorize("hasRole('FELHASZNALO')")
     public void deleteJarmu(@RequestParam() Long id) {
         jarmuService.delete(id);
     }
 
     @PutMapping("/update/jarmu")
+    @PreAuthorize("hasRole('FELHASZNALO')")
     public JarmuDto updateJarmu(@RequestBody JarmuDto jarmu, Authentication authentication) {
         if (jarmu.getId() > 0L) {
             String email = authentication.getName();
@@ -58,41 +62,49 @@ public class JarmuController {
     }
 
     @GetMapping("/jarmu")
+    @PreAuthorize("hasRole('FELHASZNALO')")
     public List<JarmuDto> findAllJarmu(){
         return jarmuService.findAll();
     }
 
     @GetMapping("/jarmu/id")
+    @PreAuthorize("hasRole('FELHASZNALO')")
     public JarmuDto findById(@RequestBody Long id){
         return jarmuService.findById(id);
     }
 
     @GetMapping("/jarmu/marka")
+    @PreAuthorize("hasRole('FELHASZNALO')")
     public List<JarmuDto> findAllByMarka(@RequestBody String marka){
         return jarmuService.findAllByMarka(marka);
     }
 
     @GetMapping("/jarmu/tipus")
+    @PreAuthorize("hasRole('FELHASZNALO')")
     public List<JarmuDto> findAllByTipus(@RequestBody String tipus){
         return jarmuService.findAllByTipus(tipus);
     }
 
     @GetMapping("/jarmu/ev")
+    @PreAuthorize("hasRole('FELHASZNALO')")
     public List<JarmuDto> findAllByEv(@RequestBody Long ev){
         return jarmuService.findAllByEv(ev);
     }
 
     @GetMapping("/jarmu/evkozott")
+    @PreAuthorize("hasRole('FELHASZNALO')")
     public List<JarmuDto> findByEvBetween(@RequestParam Long kezdo_ev, @RequestParam Long veg_ev){
         return jarmuService.findAllByEvBetween(kezdo_ev, veg_ev);
     }
 
     @GetMapping("/jarmu/arkozott")
+    @PreAuthorize("hasRole('FELHASZNALO')")
     public List<JarmuDto> findByArBetween(@RequestParam Long kezdo_ar, @RequestParam Long veg_ar){
         return jarmuService.findAllByArBetween(kezdo_ar, veg_ar);
     }
 
     @PostMapping("/jarmu/filter")
+    @PreAuthorize("hasRole('FELHASZNALO')")
     public List<JarmuDto> findFiltered(@RequestBody JarmuFilterDto filterDto) {
         return jarmuService.findAllByAny(
                 filterDto.getMarka(),
