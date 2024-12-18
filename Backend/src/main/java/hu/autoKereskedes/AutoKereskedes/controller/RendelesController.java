@@ -34,7 +34,7 @@ public class RendelesController {
     }
 
     @DeleteMapping("/delete/rendeles")
-    @PreAuthorize("hasRole('FELHASZNALO')")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteRendeles(@RequestParam() Long id) {
         service.delete(id);
     }
@@ -56,7 +56,7 @@ public class RendelesController {
     }
 
     @GetMapping("/rendeles")
-    @PreAuthorize("hasRole('FELHASZNALO')")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<RendelesDto> findAllRendeles(){
         return service.getAllRendeles();
     }
