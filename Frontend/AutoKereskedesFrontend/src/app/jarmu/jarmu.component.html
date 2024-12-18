@@ -1,12 +1,10 @@
 <div class="layout-container">
-  <!-- Felső sáv -->
   <div class="top-bar">
     <button mat-raised-button color="primary" (click)="isCreating = true">Létrehozás</button>
     <button mat-raised-button color="warn" (click)="isRendelesek ? loadJarmu() : rendelesjarmu(); isRendelesek = !isRendelesek">Rendelések</button>
   </div>
 
   <div class="main-container">
-    <!-- Bal oldali sáv -->
     <div class="side-bar">
       <h3>Szűrők</h3>
       <mat-label>Márka</mat-label>
@@ -77,7 +75,6 @@
       <button mat-raised-button color="warn" (click)="isEditing = false">Mégsem</button>
     </mat-dialog-actions>
 
-    <!-- Jármű kártyák -->
     <div class="jarmu-container">
       <mat-card *ngFor="let jarmu of jarmuvek" class="jarmu-card">
         <img mat-card-image ngSrc="https://www.shutterstock.com/image-vector/car-silhouette-modern-260nw-292381178.jpg" alt="Jármű kép" height="288" width="576">

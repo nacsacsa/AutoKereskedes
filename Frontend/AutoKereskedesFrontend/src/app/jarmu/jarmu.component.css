@@ -1,27 +1,22 @@
-/* Jarmu.component.css */
-
-/* Általános stílusok */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4; /* Globális háttérszín */
+  background-color: #f4f4f4;
 }
 
-/* Layout konténer */
 .layout-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-/* Felső navigációs sáv */
 .top-bar {
   display: flex;
-  flex-direction: row; /* Gombok egymás mellett */
-  justify-content: space-around; /* Egyenletes távolság a gombok között */
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
-  background-color: #4caf50; /* Felső sáv háttérszíne */
+  background-color: #4caf50;
   color: white;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -29,7 +24,7 @@ body {
 
 .top-bar button {
   color: white;
-  background-color: #388e3c; /* Gombok színe különbözik a sáv háttérszínétől */
+  background-color: #388e3c;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -39,10 +34,9 @@ body {
 }
 
 .top-bar button:hover {
-  background-color: #2e7d32; /* Hover effektus */
+  background-color: #2e7d32;
 }
 
-/* Fő tartalom konténer */
 .main-container {
   display: flex;
   flex: 1;
@@ -50,7 +44,6 @@ body {
   overflow: hidden;
 }
 
-/* Bal oldali sáv */
 .side-bar {
   width: 250px;
   background-color: #eeeeee;
@@ -76,17 +69,15 @@ body {
   background-color: #303f9f;
 }
 
-/* Jármű kártyák tartó */
 .jarmu-container {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Rácsos elrendezés */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
   overflow-y: auto;
 }
 
-/* Egyéni kártyák stílusai */
 .jarmu-card {
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -130,7 +121,7 @@ body {
   padding: 10px;
   background-color: #f1f1f1;
   display: flex;
-  justify-content: space-evenly; /* Képes elrendezni a gombokat */
+  justify-content: space-evenly;
   gap: 10px;
 }
 
